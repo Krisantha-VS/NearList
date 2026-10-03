@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- MaterialSwitch thumb: check mark when on, nothing when off. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_check" android:state_checked="true" />
+    <item>
+        <shape android:shape="rectangle" />
+    </item>
+</selector>
