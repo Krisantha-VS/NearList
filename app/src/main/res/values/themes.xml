@@ -1,0 +1,115 @@
+<resources>
+    <!-- Colour roles resolve to values/colors.xml or values-night/colors.xml, so one theme serves both modes. -->
+    <style name="Base.Theme.Nearlist" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/md_theme_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
+        <item name="colorPrimaryInverse">@color/md_theme_inversePrimary</item>
+        <item name="colorSecondary">@color/md_theme_secondary</item>
+        <item name="colorOnSecondary">@color/md_theme_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/md_theme_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/md_theme_onSecondaryContainer</item>
+        <item name="colorTertiary">@color/md_theme_tertiary</item>
+        <item name="colorOnTertiary">@color/md_theme_onTertiary</item>
+        <item name="colorTertiaryContainer">@color/md_theme_tertiaryContainer</item>
+        <item name="colorOnTertiaryContainer">@color/md_theme_onTertiaryContainer</item>
+        <item name="colorError">@color/md_theme_error</item>
+        <item name="colorOnError">@color/md_theme_onError</item>
+        <item name="colorErrorContainer">@color/md_theme_errorContainer</item>
+        <item name="colorOnErrorContainer">@color/md_theme_onErrorContainer</item>
+        <item name="android:colorBackground">@color/md_theme_background</item>
+        <item name="colorOnBackground">@color/md_theme_onBackground</item>
+        <item name="colorSurface">@color/md_theme_surface</item>
+        <item name="colorOnSurface">@color/md_theme_onSurface</item>
+        <item name="colorSurfaceVariant">@color/md_theme_surfaceVariant</item>
+        <item name="colorOnSurfaceVariant">@color/md_theme_onSurfaceVariant</item>
+        <item name="colorSurfaceInverse">@color/md_theme_inverseSurface</item>
+        <item name="colorOnSurfaceInverse">@color/md_theme_inverseOnSurface</item>
+        <item name="colorSurfaceDim">@color/md_theme_surfaceDim</item>
+        <item name="colorSurfaceBright">@color/md_theme_surfaceBright</item>
+        <item name="colorSurfaceContainerLowest">@color/md_theme_surfaceContainerLowest</item>
+        <item name="colorSurfaceContainerLow">@color/md_theme_surfaceContainerLow</item>
+        <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
+        <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
+        <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+        <item name="colorOutline">@color/md_theme_outline</item>
+        <item name="colorOutlineVariant">@color/md_theme_outlineVariant</item>
+
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.Nearlist.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.Nearlist.TitleMedium</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.Nearlist.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.Nearlist.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.Nearlist.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.Nearlist.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.Nearlist.LabelMedium</item>
+    </style>
+
+    <style name="Theme.Nearlist" parent="Base.Theme.Nearlist" />
+
+    <!-- Type scale used in the design screens (sizes in sp, letter spacing in em = px / size). -->
+
+    <!-- App bar title: 22/28 regular -->
+    <style name="TextAppearance.Nearlist.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">22sp</item>
+        <item name="lineHeight">28sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Card titles: 16/24 medium, 0.15 -->
+    <style name="TextAppearance.Nearlist.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0.009375</item>
+    </style>
+
+    <!-- List and settings row titles: 16/24 regular, 0.5 -->
+    <style name="TextAppearance.Nearlist.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0.03125</item>
+    </style>
+
+    <!-- Secondary lines: 14/20 regular, 0.25 -->
+    <style name="TextAppearance.Nearlist.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">20sp</item>
+        <item name="android:letterSpacing">0.017857</item>
+    </style>
+
+    <!-- Captions and counts: 12/16 regular, 0.4 -->
+    <style name="TextAppearance.Nearlist.BodySmall" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="android:letterSpacing">0.033333</item>
+    </style>
+
+    <!-- Chips, buttons, section headers: 14/20 medium, 0.1 -->
+    <style name="TextAppearance.Nearlist.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">20sp</item>
+        <item name="android:letterSpacing">0.007143</item>
+    </style>
+
+    <!-- Small chips, nav labels: 12/16 medium, 0.5 -->
+    <style name="TextAppearance.Nearlist.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="android:letterSpacing">0.041667</item>
+    </style>
+
+    <!-- Coordinates in list rows: monospace 12/16 -->
+    <style name="TextAppearance.Nearlist.Mono" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:fontFamily">monospace</item>
+        <item name="fontFamily">monospace</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Captured coordinates on the place form: monospace 16/24 -->
+    <style name="TextAppearance.Nearlist.Mono.Large">
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24sp</item>
+    </style>
+</resources>
