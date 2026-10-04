@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Place row overflow menu. Delete is tinted with the error colour in code. -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_edit_place"
+        android:icon="@drawable/ic_edit"
+        android:title="@string/places_edit" />
+    <item
+        android:id="@+id/action_delete_place"
+        android:icon="@drawable/ic_delete"
+        android:title="@string/places_delete" />
+</menu>

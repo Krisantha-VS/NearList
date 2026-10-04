@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+    <!-- Activity tab; shown while the log has entries. -->
+    <item
+        android:id="@+id/action_export_log"
+        android:icon="@drawable/ic_export"
+        android:title="@string/action_export_log"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_clear_log"
+        android:icon="@drawable/ic_clear_log"
+        android:title="@string/action_clear_log"
+        app:showAsAction="never" />
+    <!-- Debug builds only (visibility set in MainActivity). -->
+    <item
+        android:id="@+id/action_load_sample_data"
+        android:title="@string/action_load_sample_data"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_simulate_arrival"
+        android:title="@string/action_simulate_arrival"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_keep_location_active"
+        android:checkable="true"
+        android:title="@string/action_keep_location_active"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_clear_all_data"
+        android:title="@string/action_clear_all_data"
+        app:showAsAction="never" />
+</menu>

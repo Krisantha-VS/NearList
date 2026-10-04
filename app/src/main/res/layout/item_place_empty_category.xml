@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Category without places that open tasks are waiting for. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/space_s"
+    android:background="@drawable/shape_dashed_outline_12"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingVertical="12dp"
+    android:paddingStart="12dp"
+    android:paddingEnd="@dimen/space_s">
+
+    <ImageView
+        android:id="@+id/categoryTile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_rounded_12"
+        android:importantForAccessibility="no"
+        android:padding="8dp"
+        tools:backgroundTint="@color/category_other_container"
+        tools:src="@drawable/ic_category_other"
+        tools:tint="@color/category_other" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/emptyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Nearlist.LabelLarge"
+            android:textColor="?attr/colorOnSurface"
+            tools:text="No Other places yet" />
+
+        <TextView
+            android:id="@+id/emptyBody"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Nearlist.BodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            tools:text="1 task is waiting for one" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/add"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/places_add_in_category" />
+</LinearLayout>
