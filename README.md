@@ -87,15 +87,22 @@ The Gradle wrapper works without Android Studio open. On Windows, point `JAVA_HO
 
 ```powershell
 $env:JAVA_HOME = "C:\Program Files\Android\Android Studio\jbr"
-.\gradlew.bat assembleDebug          # build the debug APK
-.\gradlew.bat testDebugUnitTest      # JVM unit tests
-.\gradlew.bat lintDebug              # Android lint
-.\gradlew.bat installDebug           # install on the running emulator/device
+.\gradlew.bat assembleDebug               # build the debug APK
+.\gradlew.bat installDebug                # install the debug build on the running emulator/device
+.\gradlew.bat testDebugUnitTest           # JVM unit tests
+.\gradlew.bat connectedDebugAndroidTest   # instrumented + Espresso tests (needs an emulator/device)
+.\gradlew.bat lintDebug                   # Android lint
+.\gradlew.bat assembleRelease             # minified release APK (signed if keystore.properties exists)
 ```
 
-On macOS/Linux use `./gradlew` with the same task names.
+On macOS/Linux use `./gradlew` with the same task names. If `local.properties` is missing (it is not in git), create it with `sdk.dir=C:\\Users\\<you>\\AppData\\Local\\Android\\Sdk`, or open the project once in Android Studio. The first build downloads Android SDK Platform 36.1 if it is not installed.
 
-The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`.
+| Output | Path |
+|---|---|
+| Debug APK | `app/build/outputs/apk/debug/app-debug.apk` |
+| Release APK | `app/build/outputs/apk/release/app-release.apk` (`app-release-unsigned.apk` without signing) |
+| Unit test report | `app/build/reports/tests/testDebugUnitTest/index.html` |
+| Instrumented test report | `app/build/reports/androidTests/connected/debug/index.html` |
 
 ---
 
@@ -104,9 +111,31 @@ The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`.
 | Build type | Notes |
 |---|---|
 | `debug` | Includes the developer menu items on the Tasks tab (see [Debug tools](#debug-tools)). |
-| `release` | Debug menu items are hidden (`BuildConfig.DEBUG` is false). Minification is off. |
+| `release` | Debug menu items are hidden (`BuildConfig.DEBUG` is false). R8 minification and resource shrinking are on (`app/proguard-rules.pro`). |
 
 On first launch the app opens **onboarding**, which asks for the permissions it needs, then shows the main screen.
+
+### Debug run
+
+In Android Studio select the `app` configuration and press *Run*, or from the command line start an emulator with Google Play services and run `.\gradlew.bat installDebug`, then open Nearlist from the launcher.
+
+### Release APK
+
+Release signing reads `keystore.properties` in the project root. The file and the keystore are **not** in git. Create your own keystore with `keytool` and the file:
+
+```properties
+storeFile=C:/path/to/nearlist-release.jks
+storePassword=...
+keyAlias=nearlist
+keyPassword=...
+```
+
+Without `keystore.properties`, `assembleRelease` still works but produces an unsigned APK, which Android will not install until it is signed.
+
+Install a signed release APK:
+
+- **adb:** `adb install Nearlist-v1.0-release.apk`. If a debug build is installed, remove it first with `adb uninstall com.sharma.nearlist`, because the two are signed with different keys.
+- **Sideloading:** copy the APK to the phone, open it from a file manager and allow *Install unknown apps* for that app when Android asks.
 
 ---
 
@@ -158,7 +187,7 @@ You can change any of these later from *Settings › Permissions*.
   The × hides the banner until the app is restarted.
 - **Category filter chips:** All, Grocery, Fuel, Pharmacy, Other.
 - **Task cards** show the category icon, the title and:
-  - "Nearest: <place>" and a distance chip when your location is known. The closest task overall has a highlighted chip.
+  - "Nearest: <place>" and a distance chip when your location is known ("450 m", "2.4 km", "37 km", or "500+ km" for anything further). The closest task overall has a highlighted chip.
   - A time-window chip (for example "6–9 PM") when the task has one.
   - "No place saved for this category" when no place of that category exists yet.
 - Without a location fix the list reads "Oldest first · location unknown".
@@ -364,7 +393,7 @@ app/src/main/res/
 └── menu/                            Toolbar, bottom navigation and overflow menus
 
 app/src/test/        JVM unit tests
-app/src/androidTest/ Instrumented Room DAO tests
+app/src/androidTest/ Instrumented Room tests and Espresso UI tests
 ```
 
 ---
@@ -531,16 +560,24 @@ Run with `gradlew testDebugUnitTest`.
 | `ReminderDecisionEngineTest` | Rule order, cooldown boundaries, time windows, grouping |
 | `TimeWindowTest` | Windows inside a day, across midnight, all day, formatting ("6–9 PM", "10:30 PM–2 AM") |
 | `TaskSorterTest` | Nearest-first sorting, tasks without places, unknown location, category filter |
-| `FormattersTest` | Distance text ("450 m", "1.2 km", rounding at 1 km) |
+| `FormattersTest` | Distance text: "450 m", "1.2 km" below 10 km, whole kilometres up to 500 km, "500+ km" beyond, and the rounding boundaries |
 | `SettingsRepositoryTest` | Demo-mode expiry after 1 h, cooldown length in demo and normal mode |
 | `GeofenceManagerTest` | Responsiveness table, request-ID round trip, recent-sync check |
 | `ActivityCsvTest` | CSV header, ISO-8601 timestamps, quoting |
 
 ### Instrumented tests
 
-Run on a device or emulator with `gradlew connectedDebugAndroidTest`.
+Run on a device or emulator with Google Play services with `gradlew connectedDebugAndroidTest`. Animations are disabled for the run (`testOptions.animationsDisabled`).
 
-- `TaskDaoTest`: open tasks by category (oldest first), and `markDone` updating only the given IDs.
+| Test class | Covers |
+|---|---|
+| `TaskDaoTest` | Open tasks by category (oldest first), and `markDone` updating only the given IDs (in-memory Room). |
+| `DebugDataTest` | "Load sample data" is idempotent: once or three times gives 3 places and 5 tasks, and replaces existing data and the log (in-memory Room). |
+| `OnboardingFlowTest` (Espresso) | The Welcome step renders as "Step 1 of N"; *Get started* advances through the granted permission steps to the home screen and sets the onboarding flag. |
+| `PlacesScreenTest` (Espresso) | Adding a place with typed coordinates saves it and lists it on the Places tab. |
+| `TasksScreenTest` (Espresso) | Adding a task through the form; the category filter chips show only tasks of the selected category. |
+
+The Espresso tests grant the location and notification permissions with `GrantPermissionRule` and clear the app database before each test, so they do not depend on each other or on earlier data.
 
 ### Manual scenarios
 

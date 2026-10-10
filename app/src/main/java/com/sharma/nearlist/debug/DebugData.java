@@ -2,6 +2,7 @@ package com.sharma.nearlist.debug;
 
 import android.content.Context;
 
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.util.Consumer;
@@ -34,11 +35,7 @@ public final class DebugData {
     public static void loadSampleData(Context context, Runnable onDone) {
         Context appContext = context.getApplicationContext();
         AppExecutors.diskIO().execute(() -> {
-            AppDatabase db = AppDatabase.getInstance(appContext);
-            db.runInTransaction(() -> {
-                deleteAll(db);
-                insertSamples(db);
-            });
+            replaceWithSamples(AppDatabase.getInstance(appContext));
             NotificationManagerCompat.from(appContext).cancelAll();
             // Initial trigger 0 for all zones: being inside a sample place does not fire a reminder.
             GeofenceManager.syncAllBlocking(appContext, GeofenceManager.NO_CHANGED_PLACE);
@@ -80,6 +77,19 @@ public final class DebugData {
             ActivityEvent event = place == null ? null
                     : ArrivalHandler.handleEnter(appContext, place, System.currentTimeMillis(), true);
             AppExecutors.main(() -> onDone.accept(event));
+        });
+    }
+
+    /**
+     * Clears and re-inserts the sample set in one transaction. Idempotent: running it any number
+     * of times leaves exactly 3 places and 5 tasks, so the following sync registers 3 zones.
+     */
+    @VisibleForTesting
+    @WorkerThread
+    static void replaceWithSamples(AppDatabase db) {
+        db.runInTransaction(() -> {
+            deleteAll(db);
+            insertSamples(db);
         });
     }
 
