@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Category filter chip (screen 06): category icon when unselected, check mark when selected. -->
+    <style name="Widget.Nearlist.FilterChip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipIconVisible">true</item>
+        <item name="chipIconSize">18dp</item>
+    </style>
+
+    <!-- Task form category chip (screens 08–10): category icon when unselected, check on the
+         category container colour when selected (colours set per chip in AddEditTaskActivity). -->
+    <style name="Widget.Nearlist.CategoryChip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipIconVisible">true</item>
+        <item name="chipIconSize">18dp</item>
+        <item name="checkedIcon">@drawable/ic_check</item>
+        <item name="checkedIconVisible">true</item>
+    </style>
+
+    <!-- Tick label under the place radius slider (screens 14–17). -->
+    <style name="Widget.Nearlist.RadiusTick" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Nearlist.LabelMedium</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!-- Settings (screen 24): section heading, 24dp row icon, row title and summary, cooldown option. -->
+    <style name="Widget.Nearlist.SettingsSection" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">@dimen/space_m</item>
+        <item name="android:paddingEnd">@dimen/space_m</item>
+        <item name="android:paddingTop">@dimen/space_m</item>
+        <item name="android:paddingBottom">@dimen/space_s</item>
+        <item name="android:textAppearance">@style/TextAppearance.Nearlist.LabelLarge</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Widget.Nearlist.SettingsIcon" parent="">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_height">24dp</item>
+        <item name="tint">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Widget.Nearlist.SettingsTitle" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Nearlist.BodyLarge</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.Nearlist.SettingsBody" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Nearlist.BodyMedium</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <style name="Widget.Nearlist.SettingsRadio" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/touch_target</item>
+        <item name="android:paddingStart">@dimen/space_s</item>
+        <item name="android:textAppearance">@style/TextAppearance.Nearlist.BodyLarge</item>
+    </style>
+
+    <!-- Onboarding illustrations (screens 02–04): small text inside the decorative mock-ups. -->
+
+    <style name="Widget.Nearlist.OnboardingPlaceName" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Widget.Nearlist.OnboardingPlaceDetail" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodySmall</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!-- Unselected radio row in the system-permission mock-up. -->
+    <style name="Widget.Nearlist.OnboardingMockOption" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:drawableStart">@drawable/shape_radio_outline</item>
+        <item name="android:drawablePadding">12dp</item>
+        <item name="android:drawableTint">?attr/colorOnSurfaceVariant</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
+        <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
+    </style>
+
+    <!-- Notification action chip in the notification mock-up. -->
+    <style name="Widget.Nearlist.OnboardingMockAction" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">32dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:background">@drawable/shape_pill</item>
+        <item name="android:backgroundTint">?attr/colorSurfaceContainerHigh</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+</resources>

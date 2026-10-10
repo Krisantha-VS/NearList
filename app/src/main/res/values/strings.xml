@@ -1,0 +1,381 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Nearlist</string>
+
+    <!-- Categories -->
+    <string name="category_grocery">Grocery</string>
+    <string name="category_fuel">Fuel</string>
+    <string name="category_pharmacy">Pharmacy</string>
+    <string name="category_other">Other</string>
+
+    <!-- Main shell -->
+    <string name="nav_tasks">Tasks</string>
+    <string name="nav_places">Places</string>
+    <string name="nav_activity">Activity</string>
+    <string name="title_places">My places</string>
+    <string name="title_activity">Activity</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_load_sample_data">Load sample data</string>
+    <string name="action_simulate_arrival">Simulate arrival…</string>
+    <string name="action_keep_location_active">Keep location active</string>
+    <string name="action_clear_all_data">Clear all data</string>
+
+    <!-- Status banner -->
+    <string name="banner_dismiss">Dismiss</string>
+    <string name="banner_location_off_title">Location is turned off</string>
+    <string name="banner_location_off_body">Turn it on so Nearlist can remind you at your places.</string>
+    <string name="banner_location_off_action">Turn on</string>
+    <string name="banner_background_title">Reminders are off</string>
+    <string name="banner_background_body">Allow location access \'All the time\' so Nearlist can remind you at your places.</string>
+    <string name="banner_notifications_title">Notifications are off</string>
+    <string name="banner_notifications_body">Turn them on so Nearlist can alert you at your places.</string>
+    <string name="banner_fix">Fix</string>
+
+    <!-- Tasks tab (screens 05–07) -->
+    <string name="tasks_filter_description">Filter by category</string>
+    <string name="tasks_filter_all">All</string>
+    <string name="tasks_sort_nearest">Nearest first</string>
+    <string name="tasks_sort_added">Oldest first · location unknown</string>
+    <plurals name="tasks_open_count">
+        <item quantity="one">%d open</item>
+        <item quantity="other">%d open</item>
+    </plurals>
+    <string name="tasks_nearest_place">Nearest: %1$s</string>
+    <string name="tasks_no_place">No place saved for this category</string>
+    <string name="tasks_completed_header">Completed</string>
+    <string name="tasks_completed_expand">Show completed tasks</string>
+    <string name="tasks_completed_collapse">Hide completed tasks</string>
+    <string name="tasks_done_at">Done · %1$s</string>
+    <string name="tasks_mark_done">Mark %1$s done</string>
+    <string name="tasks_mark_not_done">Mark %1$s not done</string>
+    <string name="tasks_distance_description">%1$s away</string>
+    <string name="tasks_window_description">Reminds between %1$s</string>
+    <string name="tasks_add">Add task</string>
+    <string name="tasks_empty_title">No tasks yet</string>
+    <string name="tasks_empty_body">Save a place you visit first, then add a task for its category.</string>
+    <string name="tasks_empty_step1_number">1</string>
+    <string name="tasks_empty_step1_title">Save a place</string>
+    <string name="tasks_empty_step1_body">Your supermarket, fuel station, pharmacy</string>
+    <string name="tasks_empty_step2_number">2</string>
+    <string name="tasks_empty_step2_title">Add a task</string>
+    <string name="tasks_empty_step2_body">Tag it Grocery, Fuel, Pharmacy or Other</string>
+    <string name="tasks_empty_action">Save a place</string>
+    <string name="sample_data_loaded">Sample data loaded; earlier data cleared</string>
+
+    <!-- Places tab (screens 11–13) -->
+    <plurals name="places_count">
+        <item quantity="one">%d place</item>
+        <item quantity="other">%d places</item>
+    </plurals>
+    <string name="places_zones_active" tools:ignore="PluralsCandidate">%1$d of %2$d active reminder zones</string>
+    <string name="places_zones_caption" tools:ignore="PluralsCandidate">Android allows each app up to %1$d zones.</string>
+    <string name="places_zones_progress">Reminder zones used</string>
+    <string name="places_radius_description">Radius %1$s</string>
+    <string name="places_more_options">More options for %1$s</string>
+    <string name="places_edit">Edit</string>
+    <string name="places_delete">Delete</string>
+    <string name="places_none_in_category">No %1$s places yet</string>
+    <plurals name="places_tasks_waiting">
+        <item quantity="one">%d task is waiting for one</item>
+        <item quantity="other">%d tasks are waiting for one</item>
+    </plurals>
+    <string name="places_add_in_category">Add</string>
+    <string name="places_add_in_category_description">Add a %1$s place</string>
+    <string name="places_add">Add place</string>
+    <string name="places_empty_title">No places saved yet</string>
+    <string name="places_empty_body">Save the places you actually visit. Nearlist reminds you when you arrive.</string>
+    <string name="places_empty_tip">Stand at the entrance when you save. Your current position becomes the place — no map needed.</string>
+    <string name="places_delete_title">Delete %1$s?</string>
+    <string name="places_delete_message">Its reminder zone is removed. Tasks stay, but won’t remind you here any more.</string>
+    <string name="places_delete_confirm">Delete</string>
+
+    <!-- Activity tab (screens 21–23) -->
+    <string name="activity_filter_description">Filter events</string>
+    <string name="activity_filter_all">All</string>
+    <string name="activity_filter_notified">Notified</string>
+    <string name="activity_filter_suppressed">Suppressed</string>
+    <string name="activity_today">Today</string>
+    <string name="activity_yesterday">Yesterday</string>
+    <plurals name="activity_count_events">
+        <item quantity="one">%d event</item>
+        <item quantity="other">%d events</item>
+    </plurals>
+    <plurals name="activity_count_notified">
+        <item quantity="one">%d notified</item>
+        <item quantity="other">%d notified</item>
+    </plurals>
+    <plurals name="activity_count_suppressed">
+        <item quantity="one">%d suppressed</item>
+        <item quantity="other">%d suppressed</item>
+    </plurals>
+    <string name="activity_entered">Entered · %1$s</string>
+    <string name="activity_exited">Exited · %1$s</string>
+    <string name="activity_system">System</string>
+    <string name="activity_system_restart">Phone restarted</string>
+    <string name="activity_system_update">App updated</string>
+    <string name="activity_system_zones">Reminder zones</string>
+    <string name="activity_system_location_error">Location event error</string>
+    <string name="activity_system_other">System event</string>
+    <plurals name="activity_outcome_notified">
+        <item quantity="one">Notified · %d task</item>
+        <item quantity="other">Notified · %d tasks</item>
+    </plurals>
+    <string name="activity_outcome_cooldown">Suppressed · cooldown</string>
+    <string name="activity_outcome_cooldown_detail">Suppressed · cooldown (%1$s)</string>
+    <string name="activity_outcome_outside_window">Suppressed · outside time window</string>
+    <string name="activity_outcome_outside_window_detail">Suppressed · outside time window %1$s</string>
+    <string name="activity_outcome_no_open_tasks">Suppressed · no open tasks</string>
+    <string name="activity_outcome_blocked">Suppressed · notifications blocked</string>
+    <string name="activity_outcome_suppressed">Suppressed</string>
+    <string name="activity_outcome_suppressed_detail">Suppressed · %1$s</string>
+    <string name="activity_outcome_logged">Logged · no reminder on exit</string>
+    <string name="activity_simulated">Simulated</string>
+    <string name="activity_none_notified">No notified events yet</string>
+    <string name="activity_none_suppressed">No suppressed events yet</string>
+    <string name="activity_empty_title">No activity yet</string>
+    <string name="activity_empty_body">Events appear when you enter or leave a saved place.</string>
+    <string name="activity_empty_tip">To test, walk past a saved place. Each entry and exit is logged here with the reason a reminder did or didn’t appear.</string>
+    <string name="action_export_log">Export log (CSV)</string>
+    <string name="action_clear_log">Clear log</string>
+    <string name="activity_export_subject">Nearlist activity log</string>
+    <string name="activity_export_chooser">Export log</string>
+    <string name="activity_clear_title">Clear the activity log?</string>
+    <string name="activity_clear_message">All entries are deleted. Places, tasks and reminders are not affected.</string>
+    <string name="activity_clear_confirm">Clear</string>
+
+    <!-- Add / edit place (screens 14–17) -->
+    <string name="place_edit_title_new">New place</string>
+    <string name="place_edit_title_edit">Edit place</string>
+    <string name="place_edit_save">Save</string>
+    <string name="place_edit_use_location">Use my current location</string>
+    <string name="place_edit_update_location">Update to my current location</string>
+    <string name="place_edit_getting_location">Getting location…</string>
+    <string name="place_edit_refresh">Refresh location</string>
+    <string name="place_edit_coordinates">%1$s, %2$s</string>
+    <string name="place_edit_accuracy_just_now">Accuracy ±%1$d m · just now</string>
+    <string name="place_edit_accuracy_ago">Accuracy ±%1$d m · %2$s</string>
+    <string name="place_edit_fix_just_now">Located just now</string>
+    <string name="place_edit_fix_ago">Located %1$s</string>
+    <string name="place_edit_low_accuracy">Low accuracy. Move outdoors or near a window and refresh, or save anyway.</string>
+    <string name="place_edit_entered_manually">Entered manually</string>
+    <string name="place_edit_saved_on">Saved %1$s</string>
+    <string name="place_edit_saved_on_accuracy">Saved %1$s · accuracy ±%2$d m</string>
+    <string name="place_edit_waiting_title">Waiting for a GPS fix</string>
+    <string name="place_edit_waiting_body">Works best outdoors or near a window. Usually under 10 seconds.</string>
+    <string name="place_edit_no_fix">Couldn’t get your location. Try again, or enter coordinates.</string>
+    <string name="place_edit_permission_needed">Location permission is needed to use your current location.</string>
+    <string name="place_edit_location_off_title">Location is turned off</string>
+    <string name="place_edit_location_off_body">Turn it on, or enter coordinates below.</string>
+    <string name="place_edit_location_off_action">Turn on</string>
+    <string name="place_edit_manual">Enter coordinates manually</string>
+    <string name="place_edit_latitude">Latitude</string>
+    <string name="place_edit_longitude">Longitude</string>
+    <string name="place_edit_latitude_error">Between −90 and 90</string>
+    <string name="place_edit_longitude_error">Between −180 and 180</string>
+    <string name="place_edit_name_hint">Place name</string>
+    <string name="place_edit_name_placeholder">e.g. Keells Kalutara</string>
+    <string name="place_edit_name_error">Enter a name</string>
+    <string name="place_edit_category">Category</string>
+    <string name="place_edit_radius">Reminder radius</string>
+    <string name="place_edit_radius_description">Reminder radius, %1$s</string>
+    <string name="place_edit_tick_min">100 m</string>
+    <string name="place_edit_tick_mid">500 m</string>
+    <string name="place_edit_tick_max">1 km</string>
+    <string name="place_edit_radius_helper">Use a larger radius for places you drive to; the alert may arrive 1–2 minutes after you enter.</string>
+    <string name="place_edit_limit_reached" tools:ignore="PluralsCandidate">You already have %1$d places, the most Android allows. Delete one to add another.</string>
+    <string name="place_edit_delete">Delete place</string>
+    <string name="place_edit_not_found">This place no longer exists</string>
+
+    <!-- Add / edit task (screens 08–10) -->
+    <string name="task_edit_title_new">New task</string>
+    <string name="task_edit_title_edit">Edit task</string>
+    <string name="task_edit_close">Close</string>
+    <string name="task_edit_save">Save</string>
+    <string name="task_edit_title_hint">Task title</string>
+    <string name="task_edit_title_error">Enter a title</string>
+    <string name="task_edit_category">Category</string>
+    <plurals name="task_edit_places_helper">
+        <item quantity="one">You’ll be reminded at your %1$d saved %2$s place.</item>
+        <item quantity="other">You’ll be reminded at any of your %1$d saved %2$s places.</item>
+    </plurals>
+    <string name="task_edit_no_place_title">No %1$s places saved yet</string>
+    <string name="task_edit_no_place_body">This task can’t remind you until you save one.</string>
+    <string name="task_edit_add_place">Add a place</string>
+    <string name="task_edit_window_title">Only remind me between</string>
+    <string name="task_edit_window_on">Outside these hours it waits</string>
+    <string name="task_edit_window_off">Off · reminds any time</string>
+    <string name="task_edit_window_start">Start</string>
+    <string name="task_edit_window_end">End</string>
+    <string name="task_edit_window_pick_start">Choose start time</string>
+    <string name="task_edit_window_pick_end">Choose end time</string>
+    <string name="task_edit_window_overnight">Crosses midnight · ends the next day</string>
+    <string name="task_edit_window_all_day">Start and end are the same · reminds any time</string>
+    <string name="task_edit_notes_hint">Notes (optional)</string>
+    <string name="task_edit_notes_placeholder">Brand, size, anything to remember</string>
+    <string name="task_edit_delete">Delete task</string>
+    <string name="task_edit_delete_title">Delete this task?</string>
+    <string name="task_edit_delete_message">“%1$s” will be removed. This can’t be undone.</string>
+    <string name="task_edit_delete_confirm">Delete</string>
+    <string name="task_edit_not_found">This task no longer exists</string>
+
+    <!-- Settings (screen 24) -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_section_reminders">Reminders</string>
+    <string name="settings_cooldown_title">Don’t repeat the same reminder for</string>
+    <string name="settings_cooldown_body">After an alert at a place, stay quiet there this long.</string>
+    <plurals name="settings_cooldown_option">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plurals>
+    <string name="settings_default_badge">Default</string>
+    <string name="settings_battery_title">Battery-saver awareness</string>
+    <string name="settings_battery_body" formatted="false">Below 20% battery, location checks happen less often to save power.</string>
+    <string name="settings_section_permissions">Permissions</string>
+    <string name="settings_permission_location">Location</string>
+    <string name="settings_permission_background">Background location</string>
+    <string name="settings_permission_notifications">Notifications</string>
+    <string name="settings_allowed">Allowed</string>
+    <string name="settings_allowed_precise">Allowed · precise</string>
+    <string name="settings_allowed_approximate">Allowed · approximate</string>
+    <string name="settings_allowed_with_location">Allowed · included with location</string>
+    <string name="settings_not_allowed">Not allowed</string>
+    <string name="settings_background_not_allowed">Not allowed · reminders can’t work</string>
+    <string name="settings_fix">Fix</string>
+    <string name="settings_open_android_settings">Tap a row to open Android settings.</string>
+    <string name="settings_section_maintenance">Maintenance</string>
+    <string name="settings_zones_title">Reminder zones</string>
+    <string name="settings_zones_body">Use if reminders stopped after a restart.</string>
+    <plurals name="settings_zones_status">
+        <item quantity="one">%1$d zone · last registered %2$s</item>
+        <item quantity="other">%1$d zones · last registered %2$s</item>
+    </plurals>
+    <plurals name="settings_zones_status_never">
+        <item quantity="one">%d zone · not registered yet</item>
+        <item quantity="other">%d zones · not registered yet</item>
+    </plurals>
+    <string name="settings_reregister">Re-register all reminder zones</string>
+    <plurals name="settings_reregistered">
+        <item quantity="one">Registered %d reminder zone</item>
+        <item quantity="other">Registered %d reminder zones</item>
+    </plurals>
+    <string name="settings_reregister_none">No places saved, so there are no zones to register</string>
+    <string name="settings_reregister_failed">Couldn’t register reminder zones. See the Activity log for the reason.</string>
+    <string name="settings_section_developer">Developer · Demo mode</string>
+    <string name="settings_demo_title">Demo mode</string>
+    <string name="settings_demo_body">Shortens the cooldown to 10 seconds for live demonstrations.</string>
+    <string name="settings_demo_note">Not for everyday use. Turns itself off after 1 hour.</string>
+    <string name="settings_section_about">About</string>
+    <string name="settings_version_title">App version</string>
+    <string name="settings_version">%1$s (build %2$d)</string>
+    <string name="settings_offline">Works fully offline. No data leaves this device.</string>
+    <string name="settings_licences">Open-source licences</string>
+    <string name="settings_licences_body">AndroidX libraries (AppCompat, Activity, Core, Fragment, Lifecycle, Room, RecyclerView, ViewPager2, ConstraintLayout)
+Apache License 2.0
+
+Material Components for Android
+Apache License 2.0
+
+Material Symbols (Google)
+Apache License 2.0
+
+Google Play services Location
+Android Software Development Kit License</string>
+    <string name="settings_licences_close">Close</string>
+
+    <!-- Debug menu (debug builds only) -->
+    <string name="debug_simulate_title">Simulate arrival at</string>
+    <string name="debug_no_places">No saved places</string>
+    <string name="debug_place_gone">That place no longer exists</string>
+    <string name="debug_simulated_notified">%1$s: reminder shown</string>
+    <string name="debug_simulated_suppressed">%1$s: suppressed (%2$s)</string>
+    <string name="debug_clear_title">Clear all data?</string>
+    <string name="debug_clear_message">Deletes all places, tasks and Activity log entries, removes all reminder zones and cancels shown reminders.</string>
+    <string name="debug_clear_confirm">Clear</string>
+    <string name="debug_data_cleared">All data cleared</string>
+    <string name="debug_keep_location_on">Requesting location every 10 s</string>
+    <string name="debug_keep_location_off">Location requests stopped</string>
+    <string name="debug_location_permission_needed">Location permission is needed</string>
+
+    <!-- Onboarding: shared -->
+    <string name="onboarding_step_counter">Step %1$d of %2$d</string>
+    <string name="onboarding_progress_description">Onboarding progress: step %1$d of %2$d</string>
+    <string name="onboarding_open_settings">Open settings</string>
+
+    <!-- Onboarding: welcome (screen 01) -->
+    <string name="onboarding_welcome_label">Welcome</string>
+    <string name="onboarding_welcome_title">Welcome to Nearlist</string>
+    <string name="onboarding_welcome_body">Reminders that find you at the right place — fully offline.</string>
+    <string name="onboarding_welcome_action">Get started</string>
+    <string name="onboarding_welcome_sample_pharmacy">Buy paracetamol</string>
+    <string name="onboarding_welcome_sample_fuel">Fill up the scooter</string>
+    <string name="onboarding_welcome_sample_grocery">Milk, bread, eggs</string>
+
+    <!-- Onboarding: location (screen 02) -->
+    <string name="onboarding_location_label">Location</string>
+    <string name="onboarding_location_title">Allow precise location</string>
+    <string name="onboarding_location_body">Precise location tells Nearlist when you reach a saved place, like your pharmacy.</string>
+    <string name="onboarding_location_privacy">Your location never leaves this phone.</string>
+    <string name="onboarding_location_action">Allow location</string>
+    <string name="onboarding_location_denied">Nearlist can\'t remind you at your places without location. Tap Allow location to try again.</string>
+    <string name="onboarding_location_approximate">Nearlist needs precise location to tell when you reach a place. Allow location again and choose Precise.</string>
+    <string name="onboarding_location_blocked">Location is blocked for Nearlist. Open settings, then Permissions › Location, and allow it.</string>
+    <string name="onboarding_location_sample_grocery_name">Keells</string>
+    <string name="onboarding_location_sample_grocery_detail">Grocery · 350 m</string>
+    <string name="onboarding_location_sample_fuel_name">Ceypetco</string>
+    <string name="onboarding_location_sample_fuel_detail">Fuel · 1.2 km</string>
+    <string name="onboarding_location_sample_pharmacy_name">Healthguard</string>
+    <string name="onboarding_location_sample_pharmacy_detail">Pharmacy · 90 m</string>
+
+    <!-- Onboarding: background location (screen 03). Required on Android 10+ (spec Revisions). -->
+    <string name="onboarding_background_label">Background</string>
+    <string name="onboarding_background_title">Keep reminders running</string>
+    <string name="onboarding_background_body">To remind you at your places, Nearlist needs “Allow all the time”. Choose it in Settings.</string>
+    <string name="onboarding_background_not_now">Not now</string>
+    <string name="onboarding_background_note">Without \'Allow all the time\', Nearlist can\'t remind you at your places.</string>
+    <string name="onboarding_background_mock_title">Location permission</string>
+    <string name="onboarding_background_mock_section">LOCATION ACCESS FOR THIS APP</string>
+    <string name="onboarding_background_mock_always">Allow all the time</string>
+    <string name="onboarding_background_mock_pick">Pick this</string>
+    <string name="onboarding_background_mock_while_using">Allow only while using the app</string>
+    <string name="onboarding_background_mock_ask">Ask every time</string>
+    <string name="onboarding_background_mock_deny">Don’t allow</string>
+
+    <!-- Onboarding: notifications (screen 04) -->
+    <string name="onboarding_notifications_label">Notifications</string>
+    <string name="onboarding_notifications_title">Turn on notifications</string>
+    <string name="onboarding_notifications_body">Android 13 and later needs your permission before Nearlist can alert you.</string>
+    <string name="onboarding_notifications_action">Allow notifications</string>
+    <string name="onboarding_notifications_skip">Skip</string>
+    <string name="onboarding_notifications_mock_header">Nearlist · Grocery · now</string>
+    <string name="onboarding_notifications_mock_title">Near Keells Kalutara</string>
+    <string name="onboarding_notifications_mock_text">Buy milk and eggs · Bread · Washing powder</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_reminders_name">Place reminders</string>
+    <string name="notification_channel_reminders_description">One grouped reminder when you arrive at a saved place with open tasks.</string>
+    <string name="notification_title_near_place">Near %1$s</string>
+    <string name="notification_task_separator">" · "</string>
+    <string name="notification_action_mark_done">Mark done</string>
+    <string name="notification_action_mark_all_done">Mark all done</string>
+    <string name="notification_action_snooze">Snooze 1 h</string>
+    <plurals name="notification_task_count">
+        <item quantity="one">%d task</item>
+        <item quantity="other">%d tasks</item>
+    </plurals>
+
+    <!-- Activity log (SYSTEM events and details) -->
+    <string name="log_sync_failed">Couldn\'t register reminder zones (%1$s)</string>
+    <string name="log_sync_needs_background_location">Reminders need location \'All the time\'</string>
+    <string name="log_geofence_error">Location event error (%1$d %2$s)</string>
+    <string name="log_detail_notifications_blocked">notifications blocked</string>
+    <string name="log_detail_simulated">(simulated)</string>
+    <string name="log_detail_with_simulated">%1$s (simulated)</string>
+    <plurals name="log_reregistered_after_restart">
+        <item quantity="one">Re-registered %d zone after restart</item>
+        <item quantity="other">Re-registered %d zones after restart</item>
+    </plurals>
+    <plurals name="log_reregistered_after_update">
+        <item quantity="one">Re-registered %d zone after update</item>
+        <item quantity="other">Re-registered %d zones after update</item>
+    </plurals>
+</resources>
