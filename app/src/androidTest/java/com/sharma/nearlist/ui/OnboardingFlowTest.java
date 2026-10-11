@@ -13,8 +13,11 @@ import static com.sharma.nearlist.ui.UiTestSupport.waitUntil;
 import static org.junit.Assert.assertTrue;
 
 import android.os.Build;
+import android.view.View;
 
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.espresso.matcher.BoundedMatcher;
+import androidx.viewpager2.widget.ViewPager2;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.rule.GrantPermissionRule;
 
@@ -22,6 +25,8 @@ import com.sharma.nearlist.NearlistApp;
 import com.sharma.nearlist.R;
 import com.sharma.nearlist.ui.onboarding.OnboardingActivity;
 
+import org.hamcrest.Description;
+import org.hamcrest.Matcher;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -61,12 +66,32 @@ public class OnboardingFlowTest {
                 waitUntil(() -> onView(withId(R.id.stepCounter))
                         .check(matches(withText("Step " + count + " of " + count))));
                 onView(withId(R.id.stepName)).check(matches(withText(R.string.onboarding_notifications_label)));
+                // The counter updates in onPageSelected, i.e. when the smooth scroll starts. Location
+                // and Background auto-advance back to back, so wait for the pager to settle on the
+                // last page before touching its views, or Skip can still be partly off screen.
+                waitUntil(() -> onView(withId(R.id.pager)).check(matches(pagerSettledOn(count - 1))));
                 onView(withId(R.id.skip)).perform(nestedScrollTo(), click());
             }
 
             waitUntil(() -> onView(withId(R.id.bottomNav)).check(matches(isDisplayed())));
             assertTrue(NearlistApp.from(UiTestSupport.appContext()).getSettingsRepository().isOnboardingDone());
         }
+    }
+
+    /** Matches a ViewPager2 that shows {@code position} and is not scrolling. */
+    private static Matcher<View> pagerSettledOn(int position) {
+        return new BoundedMatcher<View, ViewPager2>(ViewPager2.class) {
+            @Override
+            public void describeTo(Description description) {
+                description.appendText("ViewPager2 idle on page " + position);
+            }
+
+            @Override
+            protected boolean matchesSafely(ViewPager2 pager) {
+                return pager.getCurrentItem() == position
+                        && pager.getScrollState() == ViewPager2.SCROLL_STATE_IDLE;
+            }
+        };
     }
 
     /** Mirrors OnboardingActivity's step list for this API level. */

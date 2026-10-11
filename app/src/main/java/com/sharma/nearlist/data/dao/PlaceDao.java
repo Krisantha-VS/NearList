@@ -48,6 +48,10 @@ public interface PlaceDao {
     @Query("UPDATE places SET quietUntil = :quietUntil WHERE id = :id")
     void updateQuietUntil(long id, long quietUntil);
 
+    /** Demo mode switched on: cuts every running cooldown or snooze back to maxUntil. */
+    @Query("UPDATE places SET quietUntil = MIN(quietUntil, :maxUntil)")
+    int clampQuietUntil(long maxUntil);
+
     /** Debug builds only ("Clear all data", "Load sample data"). */
     @Query("DELETE FROM places")
     void deleteAll();

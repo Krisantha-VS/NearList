@@ -99,6 +99,11 @@ public class SettingsRepository {
         return isDemoActive(getDemoEnabledAt(), clock.now());
     }
 
+    /** Latest quietUntil allowed once demo mode is switched on, so a running cooldown ends within 10 s. */
+    public long getDemoQuietCap() {
+        return demoQuietCap(clock.now());
+    }
+
     // Geofence registration status
 
     public int getZonesRegistered() {
@@ -150,5 +155,14 @@ public class SettingsRepository {
 
     static long cooldownMs(boolean demoActive, int cooldownHours) {
         return demoActive ? DEMO_COOLDOWN_MS : cooldownHours * HOUR_MS;
+    }
+
+    static long demoQuietCap(long now) {
+        return now + DEMO_COOLDOWN_MS;
+    }
+
+    /** Same rule as {@code PlaceDao.clampQuietUntil}: shortens a later quietUntil, never extends one. */
+    static long clampQuietUntil(long quietUntil, long maxUntil) {
+        return Math.min(quietUntil, maxUntil);
     }
 }

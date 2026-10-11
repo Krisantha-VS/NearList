@@ -38,4 +38,23 @@ public class SettingsRepositoryTest {
     public void cooldownMs_usesHours_whenDemoInactive() {
         assertEquals(4 * 3_600_000L, SettingsRepository.cooldownMs(false, 4));
     }
+
+    @Test
+    public void demoQuietCap_isTenSecondsFromNow() {
+        assertEquals(NOW + 10_000L, SettingsRepository.demoQuietCap(NOW));
+    }
+
+    @Test
+    public void clampQuietUntil_cutsRunningCooldown_toDemoCap() {
+        long cap = SettingsRepository.demoQuietCap(NOW);
+        long fourHourCooldown = NOW + 4 * 60 * MINUTE;
+        assertEquals(cap, SettingsRepository.clampQuietUntil(fourHourCooldown, cap));
+    }
+
+    @Test
+    public void clampQuietUntil_keepsShorterOrExpiredValue() {
+        long cap = SettingsRepository.demoQuietCap(NOW);
+        assertEquals(NOW + 5_000L, SettingsRepository.clampQuietUntil(NOW + 5_000L, cap));
+        assertEquals(0L, SettingsRepository.clampQuietUntil(0L, cap));
+    }
 }
