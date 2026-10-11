@@ -109,10 +109,19 @@ public class SettingsViewModel extends AndroidViewModel {
         return settings.isDemoActive();
     }
 
-    /** Demo mode sets responsiveness to 0 ms and the cooldown to 10 s; zones are registered again. */
+    /**
+     * Demo mode sets responsiveness to 0 ms and the cooldown to 10 s; zones are registered again.
+     * Switching it on also cuts any running cooldown to 10 s. Switching it off leaves them alone.
+     */
     public void setDemoEnabled(boolean enabled) {
         if (enabled != settings.isDemoActive()) {
             settings.setDemoEnabled(enabled);
+            if (enabled) {
+                long maxUntil = settings.getDemoQuietCap();
+                Application app = getApplication();
+                AppExecutors.diskIO().execute(() ->
+                        AppDatabase.getInstance(app).placeDao().clampQuietUntil(maxUntil));
+            }
             GeofenceManager.syncAll(getApplication());
         }
     }

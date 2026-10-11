@@ -29,7 +29,8 @@ Every arrival, departure and suppressed reminder is written to an **Activity log
 13. [Permissions](#permissions)
 14. [Tests](#tests)
 15. [Known limitations](#known-limitations)
-16. [Open-source licences](#open-source-licences)
+16. [Changelog](#changelog)
+17. [Open-source licences](#open-source-licences)
 
 ---
 
@@ -561,7 +562,7 @@ Run with `gradlew testDebugUnitTest`.
 | `TimeWindowTest` | Windows inside a day, across midnight, all day, formatting ("6–9 PM", "10:30 PM–2 AM") |
 | `TaskSorterTest` | Nearest-first sorting, tasks without places, unknown location, category filter |
 | `FormattersTest` | Distance text: "450 m", "1.2 km" below 10 km, whole kilometres up to 500 km, "500+ km" beyond, and the rounding boundaries |
-| `SettingsRepositoryTest` | Demo-mode expiry after 1 h, cooldown length in demo and normal mode |
+| `SettingsRepositoryTest` | Demo-mode expiry after 1 h, cooldown length in demo and normal mode, clamping a running cooldown when demo mode starts |
 | `GeofenceManagerTest` | Responsiveness table, request-ID round trip, recent-sync check |
 | `ActivityCsvTest` | CSV header, ISO-8601 timestamps, quoting |
 
@@ -572,6 +573,7 @@ Run on a device or emulator with Google Play services with `gradlew connectedDeb
 | Test class | Covers |
 |---|---|
 | `TaskDaoTest` | Open tasks by category (oldest first), and `markDone` updating only the given IDs (in-memory Room). |
+| `PlaceDaoTest` | `clampQuietUntil` shortens later `quietUntil` values and leaves earlier ones unchanged (in-memory Room). |
 | `DebugDataTest` | "Load sample data" is idempotent: once or three times gives 3 places and 5 tasks, and replaces existing data and the log (in-memory Room). |
 | `OnboardingFlowTest` (Espresso) | The Welcome step renders as "Step 1 of N"; *Get started* advances through the granted permission steps to the home screen and sets the onboarding flag. |
 | `PlacesScreenTest` (Espresso) | Adding a place with typed coordinates saves it and lists it on the Places tab. |
@@ -601,6 +603,13 @@ Use the emulator steps in [Testing on the emulator](#testing-on-the-emulator):
 5. **Turning location services off removes all geofences.** They are restored the next time the app opens or a sync runs.
 6. **At most 100 places**, Android's geofence limit per app.
 7. **On the emulator** the fused provider may not evaluate geofences unless an app is requesting location. Use *Keep location active* or *Simulate arrival* (debug builds).
+
+---
+
+## Changelog
+
+- **1.0.1** Switching demo mode on now cuts any cooldown or snooze already running to 10 s, so the next arrival is not suppressed by the old cooldown.
+- **1.0** First release.
 
 ---
 
