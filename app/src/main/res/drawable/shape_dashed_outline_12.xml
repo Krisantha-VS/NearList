@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Transparent dashed card: empty category row (screen 12), "Waiting for a GPS fix" (screen 15). -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+    <corners android:radius="12dp" />
+    <stroke
+        android:width="1.5dp"
+        android:color="?attr/colorOutline"
+        android:dashWidth="4dp"
+        android:dashGap="3dp" />
+</shape>
