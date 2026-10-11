@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Activity tab (screens 21 log, 22 filtered, 23 empty). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/listContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:contentDescription="@string/activity_filter_description"
+            android:paddingHorizontal="@dimen/screen_margin"
+            android:paddingTop="@dimen/space_xs"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/filterChips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:checkedChip="@id/chipAll"
+                app:chipSpacingHorizontal="@dimen/space_s"
+                app:selectionRequired="true"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipAll"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_filter_all" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipNotified"
+                    style="@style/Widget.Nearlist.FilterChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_filter_notified"
+                    app:chipIcon="@drawable/ic_notifications_active"
+                    app:chipIconTint="?attr/colorOnSurfaceVariant" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSuppressed"
+                    style="@style/Widget.Nearlist.FilterChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/activity_filter_suppressed"
+                    app:chipIcon="@drawable/ic_notifications_paused"
+                    app:chipIconTint="?attr/colorOnSurfaceVariant" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/eventList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:paddingHorizontal="@dimen/screen_margin"
+                android:paddingBottom="@dimen/space_m"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_activity_event" />
+
+            <!-- A filter with no matching events while the log itself is not empty. -->
+            <TextView
+                android:id="@+id/filterEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_xl"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:visibility="gone"
+                tools:text="@string/activity_none_notified" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Empty state (screen 23). -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/emptyState"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_margin"
+            android:paddingTop="@dimen/space_xl"
+            android:paddingBottom="@dimen/space_l">
+
+            <FrameLayout
+                android:layout_width="260dp"
+                android:layout_height="220dp"
+                android:importantForAccessibility="noHideDescendants">
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="180dp"
+                    android:layout_marginStart="47dp"
+                    android:layout_marginTop="20dp"
+                    android:background="?attr/colorOutlineVariant" />
+
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/shape_dashed_square_8" />
+
+                <View
+                    android:layout_width="120dp"
+                    android:layout_height="10dp"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_pill"
+                    android:backgroundTint="?attr/colorSurfaceContainerHighest" />
+
+                <View
+                    android:layout_width="72dp"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="38dp"
+                    android:background="@drawable/shape_pill"
+                    android:backgroundTint="?attr/colorSurfaceContainerHigh" />
+
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="92dp"
+                    android:background="@drawable/shape_dashed_square_8" />
+
+                <View
+                    android:layout_width="96dp"
+                    android:layout_height="10dp"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="96dp"
+                    android:background="@drawable/shape_pill"
+                    android:backgroundTint="?attr/colorSurfaceContainerHighest" />
+
+                <View
+                    android:layout_width="56dp"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="114dp"
+                    android:background="@drawable/shape_pill"
+                    android:backgroundTint="?attr/colorSurfaceContainerHigh" />
+
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="168dp"
+                    android:background="@drawable/shape_dashed_square_8" />
+
+                <View
+                    android:layout_width="108dp"
+                    android:layout_height="10dp"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="172dp"
+                    android:background="@drawable/shape_pill"
+                    android:backgroundTint="?attr/colorSurfaceContainerHighest" />
+
+                <View
+                    android:layout_width="64dp"
+                    android:layout_height="8dp"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="190dp"
+                    android:background="@drawable/shape_pill"
+                    android:backgroundTint="?attr/colorSurfaceContainerHigh" />
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginStart="164dp"
+                    android:layout_marginTop="44dp"
+                    android:alpha="0.3"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/shape_circle"
+                    app:tint="?attr/colorPrimaryContainer" />
+
+                <ImageView
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:layout_marginStart="164dp"
+                    android:layout_marginTop="44dp"
+                    android:alpha="0.25"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/shape_ring"
+                    app:tint="?attr/colorPrimary" />
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="188dp"
+                    android:layout_marginTop="68dp"
+                    android:background="@drawable/shape_circle"
+                    android:backgroundTint="?attr/colorPrimaryContainer"
+                    android:importantForAccessibility="no"
+                    android:padding="12dp"
+                    android:src="@drawable/ic_nav_activity"
+                    app:tint="?attr/colorOnPrimaryContainer" />
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_l"
+                android:gravity="center"
+                android:text="@string/activity_empty_title"
+                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                android:textColor="?attr/colorOnSurface" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_s"
+                android:gravity="center"
+                android:maxWidth="296dp"
+                android:text="@string/activity_empty_body"
+                android:textAppearance="?attr/textAppearanceBodyLarge"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_l"
+                android:background="@drawable/shape_rounded_12"
+                android:backgroundTint="?attr/colorSurfaceContainer"
+                android:drawablePadding="12dp"
+                android:paddingHorizontal="@dimen/space_m"
+                android:paddingVertical="12dp"
+                android:text="@string/activity_empty_tip"
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurface"
+                app:drawableStartCompat="@drawable/ic_directions_walk_filled"
+                app:drawableTint="?attr/colorPrimary" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

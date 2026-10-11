@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Permission row in Settings (screen 24): icon, name, status, and a check or a Fix button.
+     The background colour is set in code (tinted when not allowed); the ripple is the foreground. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/permissionRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:minHeight="72dp"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/space_m"
+    android:paddingVertical="12dp">
+
+    <ImageView
+        android:id="@+id/permissionIcon"
+        style="@style/Widget.Nearlist.SettingsIcon"
+        android:importantForAccessibility="no"
+        tools:src="@drawable/ic_my_location" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_m"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/permissionName"
+            style="@style/Widget.Nearlist.SettingsTitle"
+            tools:text="Location" />
+
+        <TextView
+            android:id="@+id/permissionStatus"
+            style="@style/Widget.Nearlist.SettingsBody"
+            tools:text="Allowed · precise" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/permissionOk"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_check_circle_filled"
+        app:tint="?attr/colorPrimary" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/permissionFix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="?attr/colorError"
+        android:text="@string/settings_fix"
+        android:textColor="?attr/colorOnError"
+        android:visibility="gone"
+        tools:visibility="visible" />
+</LinearLayout>

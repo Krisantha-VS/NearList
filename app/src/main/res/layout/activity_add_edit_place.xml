@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Add / edit place (screens 14 captured, 15 acquiring, 16 location off, 17 edit). No map. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="64dp"
+        app:menu="@menu/menu_add_edit_place"
+        app:navigationContentDescription="@string/task_edit_close"
+        app:navigationIcon="@drawable/ic_close"
+        app:title="@string/place_edit_title_new" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/screen_margin"
+            android:paddingTop="@dimen/space_s"
+            android:paddingBottom="@dimen/space_l">
+
+            <com.sharma.nearlist.ui.common.StatusBanner
+                android:id="@+id/locationBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/useLocation"
+                style="@style/Widget.Material3.Button.TonalButton.Icon"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/place_edit_use_location"
+                app:icon="@drawable/ic_my_location"
+                app:iconGravity="textStart" />
+
+            <!-- Captured, typed or saved coordinates (screens 14, 17). -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/coordinateCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="?attr/colorSurfaceContainerLowest"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeColor="?attr/colorOutlineVariant"
+                app:strokeWidth="1dp"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:minHeight="72dp"
+                    android:orientation="horizontal"
+                    android:paddingVertical="12dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="@dimen/space_xs">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/shape_rounded_12"
+                        android:backgroundTint="?attr/colorPrimaryContainer"
+                        android:importantForAccessibility="no"
+                        android:padding="8dp"
+                        android:src="@drawable/ic_location_on"
+                        app:tint="?attr/colorOnPrimaryContainer" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/coordinatesText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.Nearlist.Mono.Large"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textStyle="bold"
+                            tools:text="6.5854, 79.9607" />
+
+                        <TextView
+                            android:id="@+id/coordinatesStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:drawablePadding="@dimen/space_xs"
+                            android:gravity="center_vertical"
+                            android:textAppearance="@style/TextAppearance.Nearlist.BodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            tools:text="Accuracy ±12 m · just now" />
+
+                        <TextView
+                            android:id="@+id/lowAccuracy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_xs"
+                            android:text="@string/place_edit_low_accuracy"
+                            android:textAppearance="@style/TextAppearance.Nearlist.BodySmall"
+                            android:textColor="?attr/colorError"
+                            android:visibility="gone" />
+                    </LinearLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/refreshLocation"
+                        style="@style/Widget.Material3.Button.IconButton"
+                        android:layout_width="@dimen/touch_target"
+                        android:layout_height="@dimen/touch_target"
+                        android:contentDescription="@string/place_edit_refresh"
+                        app:icon="@drawable/ic_refresh"
+                        app:iconTint="?attr/colorOnSurfaceVariant" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Waiting for a GPS fix (screen 15). -->
+            <LinearLayout
+                android:id="@+id/acquiringCard"
+                android:layout_width="match_parent"
+                android:baselineAligned="false"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_dashed_outline_12"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="@dimen/space_m"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp">
+
+                    <ImageView
+                        android:id="@+id/acquiringPulse"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/shape_circle"
+                        app:tint="?attr/colorPrimaryContainer" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_satellite"
+                        app:tint="?attr/colorOnPrimaryContainer" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/place_edit_waiting_title"
+                        android:textAppearance="@style/TextAppearance.Nearlist.LabelLarge"
+                        android:textColor="?attr/colorOnSurface" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/place_edit_waiting_body"
+                        android:textAppearance="@style/TextAppearance.Nearlist.BodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/manualToggle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/touch_target"
+                android:layout_marginTop="@dimen/space_xs"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/space_xs">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_edit_location"
+                    app:tint="?attr/colorOnSurface" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:text="@string/place_edit_manual"
+                    android:textAppearance="@style/TextAppearance.Nearlist.LabelLarge"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <ImageView
+                    android:id="@+id/manualExpandIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_expand_more"
+                    app:tint="?attr/colorOnSurface" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/manualSection"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_s"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/latitudeLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="@string/place_edit_latitude">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/latitudeInput"
+                        android:saveEnabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789.,-"
+                        android:fontFamily="monospace"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/longitudeLayout"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_m"
+                    android:layout_weight="1"
+                    android:hint="@string/place_edit_longitude">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/longitudeInput"
+                        android:saveEnabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:digits="0123456789.,-"
+                        android:fontFamily="monospace"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal|numberSigned"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameLayout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="@string/place_edit_name_hint"
+                app:placeholderText="@string/place_edit_name_placeholder">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapWords"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/categoryChips"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_m"
+                android:contentDescription="@string/place_edit_category"
+                app:chipSpacingHorizontal="@dimen/space_s"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipGrocery"
+                    style="@style/Widget.Nearlist.CategoryChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/category_grocery"
+                    app:chipIcon="@drawable/ic_category_grocery" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipFuel"
+                    style="@style/Widget.Nearlist.CategoryChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/category_fuel"
+                    app:chipIcon="@drawable/ic_category_fuel" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipPharmacy"
+                    style="@style/Widget.Nearlist.CategoryChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/category_pharmacy"
+                    app:chipIcon="@drawable/ic_category_pharmacy" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipOther"
+                    style="@style/Widget.Nearlist.CategoryChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/category_other"
+                    app:chipIcon="@drawable/ic_category_other" />
+            </com.google.android.material.chip.ChipGroup>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_l"
+                android:labelFor="@id/radiusSlider"
+                android:text="@string/place_edit_radius"
+                android:textAppearance="@style/TextAppearance.Nearlist.LabelLarge"
+                android:textColor="?attr/colorOnSurface" />
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/radiusSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:stepSize="50"
+                android:value="300"
+                android:valueFrom="100"
+                android:valueTo="1000"
+                app:labelBehavior="visible"
+                app:tickVisible="false" />
+
+            <!-- Tick labels under the track; horizontal padding = the slider's track side padding. -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/radiusTicks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="noHideDescendants">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/tickMinGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0" />
+
+                <!-- 500 m on a 100–1000 m track: (500 − 100) / 900. -->
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/tickMidGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.4444" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/tickMaxGuide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="1" />
+
+                <TextView
+                    style="@style/Widget.Nearlist.RadiusTick"
+                    android:text="@string/place_edit_tick_min"
+                    app:layout_constraintEnd_toEndOf="@id/tickMinGuide"
+                    app:layout_constraintStart_toStartOf="@id/tickMinGuide"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/Widget.Nearlist.RadiusTick"
+                    android:text="@string/place_edit_tick_mid"
+                    app:layout_constraintEnd_toEndOf="@id/tickMidGuide"
+                    app:layout_constraintStart_toStartOf="@id/tickMidGuide"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/Widget.Nearlist.RadiusTick"
+                    android:text="@string/place_edit_tick_max"
+                    app:layout_constraintEnd_toEndOf="@id/tickMaxGuide"
+                    app:layout_constraintStart_toStartOf="@id/tickMaxGuide"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.sharma.nearlist.ui.places.RadiusPreviewView
+                android:id="@+id/radiusPreview"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/shape_rounded_16"
+                android:backgroundTint="?attr/colorSurfaceContainerLow" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_s"
+                android:paddingHorizontal="@dimen/space_xs"
+                android:text="@string/place_edit_radius_helper"
+                android:textAppearance="@style/TextAppearance.Nearlist.BodySmall"
+                android:textColor="?attr/colorOnSurfaceVariant" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/deleteButton"
+                style="@style/Widget.Material3.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-12dp"
+                android:layout_marginTop="12dp"
+                android:minHeight="@dimen/touch_target"
+                android:text="@string/place_edit_delete"
+                android:textColor="?attr/colorError"
+                android:visibility="gone"
+                app:icon="@drawable/ic_delete"
+                app:iconTint="?attr/colorError"
+                app:rippleColor="?attr/colorErrorContainer"
+                tools:visibility="visible" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>
