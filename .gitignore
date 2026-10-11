@@ -1,16 +1,31 @@
-*.iml
+# Gradle and build output
 .gradle/
-/local.properties
-/.idea/
-.DS_Store
 build/
 /captures
+captures/
 .externalNativeBuild
 .cxx
 *.apk
 *.aab
+
+# Local machine configuration
+/local.properties
+local.properties
+
+# Signing secrets (release keystore and its passwords)
 *.jks
 *.keystore
+keystore.properties
+
+# Android Studio: ignore per-user files, keep shared code style and inspection settings
+*.iml
+/.idea/*
+!/.idea/codeStyles/
+!/.idea/inspectionProfiles/
+!/.idea/dictionaries/
+
+# Misc
+.DS_Store
 google-services.json
 .env
 *.log
