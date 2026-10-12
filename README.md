@@ -15,22 +15,23 @@ Every arrival, departure and suppressed reminder is written to an **Activity log
 ## Contents
 
 1. [Features](#features)
-2. [Requirements](#requirements)
-3. [Setup](#setup)
-4. [Build and run](#build-and-run)
-5. [Testing on the emulator](#testing-on-the-emulator)
-6. [User guide](#user-guide)
-7. [Debug tools](#debug-tools)
-8. [Architecture](#architecture)
-9. [Project structure](#project-structure)
-10. [Data model](#data-model)
-11. [How a reminder is decided](#how-a-reminder-is-decided)
-12. [Geofence registration](#geofence-registration)
-13. [Permissions](#permissions)
-14. [Tests](#tests)
-15. [Known limitations](#known-limitations)
-16. [Changelog](#changelog)
-17. [Open-source licences](#open-source-licences)
+2. [Download](#download)
+3. [Requirements](#requirements)
+4. [Setup](#setup)
+5. [Build and run](#build-and-run)
+6. [Testing on the emulator](#testing-on-the-emulator)
+7. [User guide](#user-guide)
+8. [Debug tools](#debug-tools)
+9. [Architecture](#architecture)
+10. [Project structure](#project-structure)
+11. [Data model](#data-model)
+12. [How a reminder is decided](#how-a-reminder-is-decided)
+13. [Geofence registration](#geofence-registration)
+14. [Permissions](#permissions)
+15. [Tests](#tests)
+16. [Known limitations](#known-limitations)
+17. [Changelog](#changelog)
+18. [Open-source licences](#open-source-licences)
 
 ---
 
@@ -50,15 +51,39 @@ Every arrival, departure and suppressed reminder is written to an **Activity log
 
 ---
 
+## Download
+
+| Item | Value |
+|---|---|
+| Release | [v1.0.1](https://github.com/Krisantha-VS/NearList/releases/tag/v1.0.1) |
+| File | `Nearlist-v1.0.1-release.apk` |
+| SHA-256 | `599808297ac7e2ef7ee2089dd4e66135037a07936ef2d03bef0cf9c184148a59` |
+| Requires | Android 7.0 (API 24) or later |
+
+Verify the download before installing:
+
+```powershell
+Get-FileHash .\Nearlist-v1.0.1-release.apk -Algorithm SHA256   # Windows
+```
+
+```bash
+sha256sum Nearlist-v1.0.1-release.apk                          # macOS/Linux
+```
+
+The hash must match the value above. See [Release APK](#release-apk) for how to install it.
+
+---
+
 ## Requirements
 
 | Item | Version |
 |---|---|
-| Android Studio | A recent stable version with the bundled JetBrains Runtime (JBR, Java 17+) |
+| Android Studio | **Panda 4 (2025.3.4) or later**, required by AGP 9.2.1 (developed and verified on Rabbit 1, 2026.2.1) |
+| JDK | 21 for the Gradle daemon toolchain (`gradle/gradle-daemon-jvm.properties`) |
 | Android Gradle Plugin | 9.2.1 |
 | Gradle | 9.4.1 (wrapper included) |
 | compileSdk / targetSdk | 36.1 / 36 |
-| minSdk | 24 (Android 7.0) |
+| minSdk | 24 (Android 7.0). Play services Location 21.3.0 (geofencing) requires API 21+ and the Java 8 APIs used require API 24, which reaches about 96.6% of active devices. |
 | Language | Java 11 source compatibility |
 | Device / emulator | **Must include Google Play services** (use a "Google APIs" or "Google Play" system image) |
 
@@ -135,7 +160,7 @@ Without `keystore.properties`, `assembleRelease` still works but produces an uns
 
 Install a signed release APK:
 
-- **adb:** `adb install Nearlist-v1.0-release.apk`. If a debug build is installed, remove it first with `adb uninstall com.sharma.nearlist`, because the two are signed with different keys.
+- **adb:** `adb install Nearlist-v1.0.1-release.apk`. If a debug build is installed, remove it first with `adb uninstall com.sharma.nearlist`, because the two are signed with different keys.
 - **Sideloading:** copy the APK to the phone, open it from a file manager and allow *Install unknown apps* for that app when Android asks.
 
 ---
@@ -552,6 +577,8 @@ Receivers in the manifest:
 
 ## Tests
 
+Summary: 48 local unit tests (`./gradlew testDebugUnitTest`) + 11 instrumented tests (`./gradlew connectedDebugAndroidTest`) = **59 / 59 passing**, run on Android 15 (API 35) emulators (`Medium_Phone_API_35` and a Pixel 8 image).
+
 ### JVM unit tests
 
 Run with `gradlew testDebugUnitTest`.
@@ -603,6 +630,7 @@ Use the emulator steps in [Testing on the emulator](#testing-on-the-emulator):
 5. **Turning location services off removes all geofences.** They are restored the next time the app opens or a sync runs.
 6. **At most 100 places**, Android's geofence limit per app.
 7. **On the emulator** the fused provider may not evaluate geofences unless an app is requesting location. Use *Keep location active* or *Simulate arrival* (debug builds).
+8. **Any database schema change wipes local data.** `AppDatabase` uses `fallbackToDestructiveMigration()`. Proper `Migration`s and `exportSchema = true` are planned before a future schema change.
 
 ---
 
