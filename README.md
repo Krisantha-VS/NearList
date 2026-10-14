@@ -103,7 +103,7 @@ Deliberately **not** used: Jetpack Compose, the Navigation component, Hilt/Dagge
 
 1. **Get the project.** Clone or copy the `Nearlist` folder to your machine.
 2. **Open it in Android Studio.** Use *File › Open* and select the `Nearlist` folder (the one containing `settings.gradle.kts`). Let Gradle sync finish.
-3. **Check the SDK.** Install Android SDK Platform 36 and the latest build tools in *Settings › Languages & Frameworks › Android SDK*. `local.properties` is created by Android Studio and points to your SDK.
+3. **Check the SDK.** Install Android SDK Platform 36.1 and the latest build tools in *Settings › Languages & Frameworks › Android SDK*. `local.properties` is created by Android Studio and points to your SDK.
 4. **Create an emulator with Google Play services.** In *Device Manager*, create a device such as a Pixel with a **Google APIs** or **Google Play** image (API 33 or later is recommended so the notification permission flow is shown). Geofencing does not work on plain AOSP images.
 5. **Run the app.** Select the `app` configuration and press *Run*.
 
